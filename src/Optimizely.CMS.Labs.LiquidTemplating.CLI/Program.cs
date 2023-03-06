@@ -5,7 +5,7 @@ using Optimizely.CMS.Labs.LiquidTemplating.CLI.Writer;
 namespace Optimizely.CMS.Labs.LiquidTemplating.CLI;
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         string viewsRootGuid = "088d483d-aa5d-408f-8fa8-9d6cda9da03f";
        
@@ -78,10 +78,16 @@ class Program
             case Mode.Watch:
                 processor = new WatchModeProcessor(remoteReader, localReader, remoteWriter, workingDirectory);
                 break;
+            case Mode.Render:
+                //processor = new RenderModeProcessor(workingDirectory);
+                break;
             default:
                 break;
         }
 
-        processor.Process();
+
+        var processor1 = new RenderModeProcessor(workingDirectory, "startpage\\index.liquid");
+
+        await processor1.Process();
     }
 }

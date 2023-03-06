@@ -6,5 +6,6 @@
         Pull,
         Push,
         Watch,
+        Render
     }
 }
